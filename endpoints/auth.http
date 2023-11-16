@@ -1,0 +1,60 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTU1ZGU2NjBkZjBkZDJjZTYzZTQ2ZGIiLCJ1SWQiOiIxODIyMTc2NTUxMSIsImVtYWlsIjoiY29uZ3R1enhjMUBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IkR1eWhhdTEiLCJpYXQiOjE3MDAxMjc5NzMsImV4cCI6MTcwMDIxNDM3M30.AddV8VJPQBCbpNNP2jQX37rlo-bthEaHYLRVLKLivjk
+
+###
+GET {{baseUrl}}/{{urlPath}}/signout
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/currentuser
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+POST {{baseUrl}}/{{urlPath}}/signup
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "username": "duyhau1",
+  "password": "12345678",
+  "email": "congtuzxc1@gmail.com"
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/signin
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "account": "duyhau1",
+  "password": "12345678"
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/forgot-password
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "email": ""
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/reset-password/<token>
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "password": "",
+  "confirmPassword": ""
+}
