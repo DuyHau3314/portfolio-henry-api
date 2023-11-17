@@ -30,11 +30,11 @@ export class SignIn {
         userId: user._id,
         uId: existingUser.uId,
         email: existingUser.email,
-        username: existingUser.username,
+        username: existingUser.username
       },
       config.JWT_TOKEN!,
       {
-        expiresIn: '1d',
+        expiresIn: '1d'
       }
     );
 
@@ -44,6 +44,7 @@ export class SignIn {
       username: existingUser!.username,
       email: existingUser!.email,
       uId: existingUser!.uId,
+      role: existingUser!.role,
       createdAt: existingUser!.createdAt
     } as IUserDocument;
     res.status(HTTP_STATUS.OK).json({ message: 'User login successfully', user: userDocument, token: userJwt });

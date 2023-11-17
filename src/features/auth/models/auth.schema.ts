@@ -4,6 +4,8 @@ import { model, Model, Schema } from 'mongoose';
 
 const SALT_ROUND = 10;
 
+const ADMIN_EMAILS: string[] = ['congtuzxc@gmail.com', 'trinhhau230498@gmail.com', 'hautd@vmogroup.com', 'trinhhau23048888@gmail.com']; // Replace with actual admin emails
+
 const authSchema: Schema = new Schema(
   {
     username: { type: String },
@@ -12,7 +14,8 @@ const authSchema: Schema = new Schema(
     password: { type: String },
     createdAt: { type: Date, default: Date.now },
     passwordResetToken: { type: String, default: '' },
-    passwordResetExpires: { type: Number }
+    passwordResetExpires: { type: Number },
+    role: { type: String, default: 'user' }
   },
   {
     toJSON: {
@@ -27,6 +30,10 @@ const authSchema: Schema = new Schema(
 authSchema.pre('save', async function (this: IAuthDocument, next: () => void) {
   const hashedPassword: string = await hash(this.password as string, SALT_ROUND);
   this.password = hashedPassword;
+
+    if (ADMIN_EMAILS.includes(this.email)) {
+      this.role = 'admin';
+    }
   next();
 });
 

@@ -2,7 +2,7 @@ import mongoose, { Document } from 'mongoose';
 import { ObjectId } from 'mongodb';
 
 export interface IUserDocument extends Document {
-  _id: string | ObjectId;
+  userId: string | ObjectId;
   authId: string | ObjectId;
   username?: string;
   email?: string;
@@ -10,6 +10,7 @@ export interface IUserDocument extends Document {
   uId?: string;
   social: ISocialLinks;
   createdAt?: Date;
+  role?: string;
 }
 
 export interface IResetPasswordParams {
