@@ -20,4 +20,11 @@ const signupSchema: ObjectSchema = Joi.object().keys({
   })
 });
 
-export { signupSchema };
+const signUpGoogleSchema: ObjectSchema = Joi.object().keys({
+  email: Joi.string().email().required().messages({
+    'string.email': 'Invalid email format',
+    'string.empty': 'Email is a required field'
+  })
+});
+
+export { signupSchema, signUpGoogleSchema };

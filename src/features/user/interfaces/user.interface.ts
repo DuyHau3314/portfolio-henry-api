@@ -27,6 +27,11 @@ export interface INotificationSettings {
   follows: boolean;
 }
 
+export interface ISignUpGoogleParams {
+  email: string;
+  password: string;
+}
+
 export interface IBasicInfo {
   quote: string;
   work: string;

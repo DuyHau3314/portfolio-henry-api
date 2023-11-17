@@ -8,14 +8,15 @@ const ADMIN_EMAILS: string[] = ['congtuzxc@gmail.com', 'trinhhau230498@gmail.com
 
 const authSchema: Schema = new Schema(
   {
-    username: { type: String },
+    username: { type: String, unique: true},
     uId: { type: String },
-    email: { type: String },
+    email: { type: String, unique: true },
     password: { type: String },
     createdAt: { type: Date, default: Date.now },
     passwordResetToken: { type: String, default: '' },
     passwordResetExpires: { type: Number },
-    role: { type: String, default: 'user' }
+    role: { type: String, default: 'user' },
+    type: { type: String, default: '' }
   },
   {
     toJSON: {
@@ -31,9 +32,9 @@ authSchema.pre('save', async function (this: IAuthDocument, next: () => void) {
   const hashedPassword: string = await hash(this.password as string, SALT_ROUND);
   this.password = hashedPassword;
 
-    if (ADMIN_EMAILS.includes(this.email)) {
-      this.role = 'admin';
-    }
+  if (ADMIN_EMAILS.includes(this.email)) {
+    this.role = 'admin';
+  }
   next();
 });
 
