@@ -27,7 +27,7 @@ export class Password {
     const randomCharacters: string = randomBytes.toString('hex');
     await authService.updatePasswordToken(`${existingUser._id!}`, randomCharacters, Date.now() * 60 * 60 * 1000);
 
-    const resetLink = `${config.CLIENT_URL}/reset-password?token=${randomCharacters}`;
+    const resetLink = `${config.CLIENT_URL}?token=${randomCharacters}&reset-password=true`;
     const template: string = forgotPasswordTemplate.passwordResetTemplate(existingUser.username!, resetLink);
     emailQueue.addEmailJob('forgotPasswordEmail', { template, receiverEmail: email, subject: 'Reset your password' });
     res.status(HTTP_STATUS.OK).json({ message: 'Password reset email sent.' });
@@ -35,11 +35,8 @@ export class Password {
 
   @joiValidation(passwordSchema)
   public async update(req: Request, res: Response): Promise<void> {
-    const { password, confirmPassword } = req.body;
+    const { password } = req.body;
     const { token } = req.params;
-    if (password !== confirmPassword) {
-      throw new BadRequestError('Passwords do not match');
-    }
     const existingUser: IAuthDocument = await authService.getAuthUserByPasswordToken(token);
     if (!existingUser) {
       throw new BadRequestError('Reset token has expired.');
