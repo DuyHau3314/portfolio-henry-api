@@ -1,0 +1,203 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTU4MzNlZjdlZjMzODlmY2E1ZDFkMjIiLCJ1SWQiOiI2NTM1ODY2NjgwNjQiLCJlbWFpbCI6InRyaW5oaGF1MjMwNDk4QGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiRHV5aGF1IiwiaWF0IjoxNzAwNDExNjUzLCJleHAiOjE3MDA0OTgwNTN9.-8KsrYXnRBvtiHcZQv-LoLASlQ1KVguNoZzWHwzPWnU
+###
+POST {{baseUrl}}/{{urlPath}}/portfolio
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Jane Doe",
+  "shortInfo": "Full-Stack Developer with a focus on MERN stack",
+  "description": "An experienced developer with over 5 years in web development",
+  "image": "jane_doe_image_url",
+  "shortDescription": "Passionate about coding and design",
+  "mainDescription": "Specializes in creating seamless user experiences",
+  "projectsCompleted": 15,
+  "satisfiedClients": 10
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/education-experience
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "skillSet": [
+    {
+      "name": "HTML",
+      "level": 5
+    },
+    {
+      "name": "CSS",
+      "level": 5
+    },
+    {
+      "name": "JavaScript",
+      "level": 5
+    },
+    {
+      "name": "React",
+      "level": 5
+    },
+    {
+      "name": "Node",
+      "level": 5
+    },
+    {
+      "name": "MongoDB",
+      "level": 5
+    },
+    {
+      "name": "Express",
+      "level": 5
+    },
+    {
+      "name": "Python",
+      "level": 5
+    },
+    {
+      "name": "Django",
+      "level": 5
+    },
+    {
+      "name": "Flask",
+      "level": 5
+    },
+    {
+      "name": "PostgreSQL",
+      "level": 5
+    },
+    {
+      "name": "MySQL",
+      "level": 5
+    },
+    {
+      "name": "Git",
+      "level": 5
+    },
+    {
+      "name": "GitHub",
+      "level": 5
+    },
+    {
+      "name": "Heroku",
+      "level": 5
+    },
+    {
+      "name": "Netlify",
+      "level": 5
+    },
+    {
+      "name": "AWS",
+      "level": 5
+    },
+    {
+      "name": "Digital Ocean",
+      "level": 5
+    },
+    {
+      "name": "Linux",
+      "level": 5
+    },
+    {
+      "name": "Windows",
+      "level": 5
+    },
+    {
+      "name": "MacOS",
+      "level": 5
+    },
+    {
+      "name": "Adobe Photoshop",
+      "level": 5
+    },
+    {
+      "name": "Adobe Illustrator",
+      "level": 5
+    },
+    {
+      "name": "Adobe XD",
+      "level": 5
+    },
+    {
+      "name": "Figma",
+      "level": 5
+    },
+    {
+      "name": "Sketch",
+      "level": 5
+    },
+    {
+      "name": "InVision",
+      "level": 5
+    },
+    {
+      "name": "Zeplin",
+      "level": 5
+    }
+  ],
+"responsibilities": [
+      { "name": "Web Development", "description": "Full stack web development using MERN stack." },
+      { "name": "Design", "description": "Designing modern UI/UX for web applications." }
+    ]
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/project
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Project2",
+  "responsibility": "Full Stack Developer (MERN) long text using MERN stack and other technologies",
+  "type": "full time",
+  "domain": "health care",
+  "title": "Full stack",
+  "image": "project1_image_url",
+  "startDate": "2019-01-01",
+  "endDate": "2019-01-01"
+}
+
+###
+@portfolioId = 6559ec1acfb33e6cfcc3dc56
+PUT {{baseUrl}}/{{urlPath}}//portfolio/{{portfolioId}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Henry"
+}
+
+###
+@portfolioId = 6559ec1acfb33e6cfcc3dc56
+@educationExperienceId = 6559fe94897057759c032351
+PUT {{baseUrl}}/{{urlPath}}/education-experience/{{educationExperienceId}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "responsibilities": [
+      { "name": "Web Development", "description": "Full stack web development using MERN stack." },
+      { "name": "Design", "description": "Designing modern UI/UX for web applications." },
+      { "name": "Web", "description": "Designing modern UI/UX for web applications." }
+    ]
+}
+
+###
+@portfolioId = 6559ec1acfb33e6cfcc3dc56
+@projectId = 655a0536f259fc4efac8b6c5
+PUT {{baseUrl}}/{{urlPath}}/project/{{projectId}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Project11"
+}

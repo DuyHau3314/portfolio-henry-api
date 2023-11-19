@@ -1,8 +1,7 @@
 @baseUrl = http://localhost:5000
 @urlPath = api/v1
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTU3NTM4OWI5MWQ0MGRmYWU4OTU1N2UiLCJlbWFpbCI6ImNvbmd0dXF3ZUBnbWFpbC5jb20iLCJpYXQiOjE3MDAyMjE4MzMsImV4cCI6MTcwMDMwODIzM30.rTqaC_ZqqQP9IM19tG48wzHTXuAKuk2OHpR03FgC2BA
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTU4MzNlZjdlZjMzODlmY2E1ZDFkMjIiLCJ1SWQiOiI2NTM1ODY2NjgwNjQiLCJlbWFpbCI6InRyaW5oaGF1MjMwNDk4QGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiRHV5aGF1IiwiaWF0IjoxNzAwMzkwNjA4LCJleHAiOjE3MDA0NzcwMDh9.LqPpAO9z_eLBY4OjuLkGeUGofngy6fbnZ357--OCCcw
 ###
 GET {{baseUrl}}/{{urlPath}}/signout
 Content-Type: application/json
@@ -34,7 +33,7 @@ Accept: application/json
 withCredentials: true
 
 {
-  "account": "duyhau1",
+  "account": "duyhau",
   "password": "12345678"
 }
 
