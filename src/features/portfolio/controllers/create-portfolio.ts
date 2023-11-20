@@ -59,11 +59,12 @@ export class Create {
 
   @joiValidation(createEducationAndExperienceSchema)
   public async educationAndExperience(req: Request, res: Response): Promise<void> {
-    const { projectIds, skillSet, responsibilities } = req.body;
+    const { skillSet, responsibilities } = req.body;
+
+    console.log('===skillSet', skillSet);
 
     portfolioQueue.addPortfolioJob('createEducationAndExperience', {
       value: {
-        projectIds,
         skillSet,
         responsibilities
       }

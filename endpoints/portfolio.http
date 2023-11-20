@@ -2,6 +2,14 @@
 @urlPath = api/v1
 
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTU4MzNlZjdlZjMzODlmY2E1ZDFkMjIiLCJ1SWQiOiI2NTM1ODY2NjgwNjQiLCJlbWFpbCI6InRyaW5oaGF1MjMwNDk4QGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiRHV5aGF1IiwiaWF0IjoxNzAwNDExNjUzLCJleHAiOjE3MDA0OTgwNTN9.-8KsrYXnRBvtiHcZQv-LoLASlQ1KVguNoZzWHwzPWnU
+
+###
+GET {{baseUrl}}/{{urlPath}}/portfolio
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
 ###
 POST {{baseUrl}}/{{urlPath}}/portfolio
 Content-Type: application/json

@@ -20,6 +20,10 @@ class Config {
   public SENDGRID_API_KEY: string | undefined;
   public SENDGRID_SENDER: string | undefined;
   public EC2_URL: string | undefined;
+  public AWS_ACCESS_KEY_ID: string | undefined;
+  public AWS_SECRET_ACCESS_KEY: string | undefined;
+  public AWS_REGION: string | undefined;
+  public AWS_BUCKET_NAME: string | undefined;
 
   private readonly DEFAULT_DATABASE_URL = 'mongodb://localhost:27017/portfolio-henry';
 
@@ -39,6 +43,10 @@ class Config {
     this.SENDGRID_API_KEY = process.env.SENDGRID_API_KEY || '';
     this.SENDGRID_SENDER = process.env.SENDGRID_SENDER || '';
     this.EC2_URL = process.env.EC2_URL || '';
+    this.AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID || '';
+    this.AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY || '';
+    this.AWS_REGION = process.env.AWS_REGION || '';
+    this.AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME || '';
   }
 
   public createLogger(name: string): bunyan {

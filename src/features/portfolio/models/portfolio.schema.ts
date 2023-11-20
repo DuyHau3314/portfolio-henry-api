@@ -6,6 +6,7 @@ const portfolioSchema: Schema = new Schema({
   name: { type: String, required: true },
   description: { type: String, default: '' },
   image: { type: String, default: '' },
+  shortInfo: { type: String, default: '' },
   // About
   shortDescription: { type: String, default: '' },
   mainDescription: { type: String, default: '' },

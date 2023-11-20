@@ -87,7 +87,8 @@ const updatePortfolioSchema: ObjectSchema = Joi.object().keys({
   mainDescription: Joi.string().optional().allow(null, ''),
   projectsCompleted: Joi.number().optional(),
   satisfiedClients: Joi.number().optional(),
-  experienceId: Joi.string().optional().allow(null, '')
+  experienceId: Joi.string().optional().allow(null, ''),
+  shortInfo: Joi.string().optional().allow(null, '')
 });
 
 const updateEducationAndExperienceSchema: ObjectSchema = Joi.object().keys({
