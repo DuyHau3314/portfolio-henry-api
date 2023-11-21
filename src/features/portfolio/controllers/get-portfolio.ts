@@ -32,4 +32,13 @@ export class Get {
       data: project
     });
   }
+
+  public async projects(req: Request, res: Response): Promise<void> {
+    const projects = await projectService.getProjects();
+
+    res.status(HTTP_STATUS.OK).json({
+      message: 'Projects fetched successfully',
+      data: projects
+    });
+  }
 }

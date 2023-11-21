@@ -22,7 +22,7 @@ export class Update {
 
   @joiValidation(updateProjectSchema)
   public async projectById(req: Request, res: Response): Promise<void> {
-    const { name, responsibility, type, domain, startDate, endDate, title, image } = req.body;
+    const { name, responsibility, type, domain, startDate, endDate, title, images } = req.body;
     const { projectId } = req.params;
 
     portfolioQueue.addPortfolioJob('updateProject', {
@@ -35,7 +35,7 @@ export class Update {
         startDate,
         endDate,
         title,
-        image
+        images
       }
     });
 

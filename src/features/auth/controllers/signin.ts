@@ -49,4 +49,37 @@ export class SignIn {
     } as IUserDocument;
     res.status(HTTP_STATUS.OK).json({ message: 'User login successfully', user: userDocument, token: userJwt });
   }
+
+  public async googleSignin(req: Request, res: Response): Promise<void> {
+    const { email } = req.body;
+    const existingUser: IAuthDocument = await authService.getAuthUserByEmail(email);
+    if (!existingUser) {
+      throw new BadRequestError('Invalid credentials');
+    }
+
+    const user: IUserDocument = await userService.getUserByAuthId(`${existingUser._id}`);
+    const userJwt: string = JWT.sign(
+      {
+        userId: user._id,
+        uId: existingUser.uId,
+        email: existingUser.email,
+        username: existingUser.username
+      },
+      config.JWT_TOKEN!,
+      {
+        expiresIn: '1d'
+      }
+    );
+
+    const userDocument: IUserDocument = {
+      ...user,
+      authId: existingUser!._id,
+      username: existingUser!.username,
+      email: existingUser!.email,
+      uId: existingUser!.uId,
+      role: existingUser!.role,
+      createdAt: existingUser!.createdAt
+    } as IUserDocument;
+    res.status(HTTP_STATUS.OK).json({ message: 'User login successfully', user: userDocument, token: userJwt });
+  }
 }

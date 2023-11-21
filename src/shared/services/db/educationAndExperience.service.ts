@@ -11,15 +11,8 @@ class EducationAndExperienceService {
     const newEducationAndExperience = await EducationAndExperienceModel.create(data);
     const newEducationAndExperienceId = newEducationAndExperience._id;
 
-    console.log('=====newEducationAndExperienceId', newEducationAndExperienceId);
-
     const portfolio = await portfolioService.getPortfolios();
     const portfolioId = portfolio[0]._id;
-
-    console.log('=====portfolio', {
-      ...portfolio[0],
-      experienceId: newEducationAndExperienceId
-    });
 
     portfolioService.updatePortfolio(portfolioId, {
       ...portfolio[0],

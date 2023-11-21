@@ -22,7 +22,7 @@ class ProjectService {
 
   // Get all projects
   public async getProjects(): Promise<IProjectDocument[]> {
-    return await ProjectModel.find();
+    return await ProjectModel.find().lean();
   }
 
   // Get a single project by ID
@@ -33,6 +33,8 @@ class ProjectService {
   // Update a project
   public async updateProject(id: string, data: IProjectDocument): Promise<IProjectDocument | null> {
     const projectDocument = await ProjectModel.findById(id);
+
+    console.log('===data', data);
 
     if (!projectDocument) {
       return null;

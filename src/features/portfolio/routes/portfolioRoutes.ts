@@ -19,6 +19,7 @@ class PortfolioRoutes {
     this.router.post('/education-experience', authMiddleware.checkAuthentication, Create.prototype.educationAndExperience);
 
     this.router.get('/portfolio', authMiddleware.checkAuthentication, Get.prototype.portfolio);
+    this.router.get('/projects', authMiddleware.checkAuthentication, Get.prototype.projects);
     this.router.get('/project/:projectId', authMiddleware.checkAuthentication, Get.prototype.project);
     this.router.get(
       '/education-experience',

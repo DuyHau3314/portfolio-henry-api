@@ -37,7 +37,7 @@ export class Create {
 
   @joiValidation(createProjectSchema)
   public async project(req: Request, res: Response): Promise<void> {
-    const { name, responsibility, type, domain, startDate, endDate, title, image } = req.body;
+    const { name, responsibility, type, domain, startDate, endDate, title, images } = req.body;
 
     portfolioQueue.addPortfolioJob('createProject', {
       value: {
@@ -48,7 +48,7 @@ export class Create {
         startDate,
         endDate,
         title,
-        image
+        images
       }
     });
 
@@ -60,8 +60,6 @@ export class Create {
   @joiValidation(createEducationAndExperienceSchema)
   public async educationAndExperience(req: Request, res: Response): Promise<void> {
     const { skillSet, responsibilities } = req.body;
-
-    console.log('===skillSet', skillSet);
 
     portfolioQueue.addPortfolioJob('createEducationAndExperience', {
       value: {
@@ -101,7 +99,7 @@ export class Create {
 
   @joiValidation(updateProjectSchema)
   public async projectById(req: Request, res: Response): Promise<void> {
-    const { name, responsibility, type, domain, startDate, endDate, title, image } = req.body;
+    const { name, responsibility, type, domain, startDate, endDate, title, images } = req.body;
     const { projectId } = req.params;
 
     portfolioQueue.addPortfolioJob('updateProject', {
@@ -114,7 +112,7 @@ export class Create {
         startDate,
         endDate,
         title,
-        image
+        images
       }
     });
 

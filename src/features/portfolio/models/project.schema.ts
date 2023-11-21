@@ -9,7 +9,7 @@ const projectSchema: Schema = new Schema({
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   title: { type: String, required: true },
-  image: { type: String, required: false }
+  images: { type: Array, required: false }
 });
 
 const ProjectModel = model<IProjectDocument>('Project', projectSchema, 'Project');

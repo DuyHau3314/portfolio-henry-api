@@ -16,6 +16,13 @@ import { emailQueue } from '@service/queues/email.queue';
 import { signupGoogleTemplate } from '@service/emails/templates/signup-google/signup-google-template';
 import { userService } from '@service/db/user.service';
 
+function extractUsername(email: string) {
+  if (!email || typeof email !== 'string') return '';
+
+  const [username] = email.split('@');
+  return username;
+}
+
 export class SignUp {
   @joiValidation(signupSchema)
   public async create(req: Request, res: Response): Promise<void> {
@@ -106,8 +113,13 @@ export class SignUp {
       // Random password with 6 characters word and integer
       const password = `${Helpers.generateRandomIntegers(8)}`;
 
+      const username = extractUsername(email);
+
+      console.log('==username', username);
+
       const authData: IAuthDocument = {
         _id: authObjectId,
+        username: username,
         uId,
         email: Helpers.lowerCase(email),
         password: password,

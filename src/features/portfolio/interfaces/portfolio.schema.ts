@@ -69,5 +69,6 @@ export interface IPortfolioJob {
     startDate?: Date;
     endDate?: Date;
     title?: string;
+    images?: string;
   };
 }
