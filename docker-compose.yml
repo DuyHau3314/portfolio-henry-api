@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - /home/ec2-user/app/volume:/data/db
+
+  redis:
+    image: redis:latest
+    ports:
+      - '6379:6379'
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - nodeapp
+
+  nodeapp:
+    build: .
+    ports:
+      - '5000:5000'
+    environment:
+      - REACT_APP_BASE_ENDPOINT=${REACT_APP_BASE_ENDPOINT}
+      - REACT_APP_ENVIRONMENT=${REACT_APP_ENVIRONMENT}
+      - REACT_APP_GIPHY_API_KEY=${REACT_APP_GIPHY_API_KEY}
+      - SENDER_EMAIL=${SENDER_EMAIL}
+      - SENDER_EMAIL_PASSWORD=${SENDER_EMAIL_PASSWORD}
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+      - SENDGRID_SENDER=${SENDGRID_SENDER}
+      - JWT_TOKEN=${JWT_TOKEN}
+      - CLIENT_URL=${CLIENT_URL}
+      - NODE_ENV=${NODE_ENV}
+      - AWS_BUCKET_NAME=${AWS_BUCKET_NAME}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - DATABASE_URL=${DATABASE_URL}
+      - REDIS_HOST=${REDIS_HOST}
+    depends_on:
+      - mongodb
+      - redis

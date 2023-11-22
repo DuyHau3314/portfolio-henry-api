@@ -12,7 +12,13 @@ class PortfolioService {
 
   // Get all portfolios
   public async getPortfolios(): Promise<IPortfolioDocument[]> {
-    const portfolios: IPortfolioDocument[] = (await PortfolioModel.find().populate('experienceId').lean()) as IPortfolioDocument[];
+    const portfolios: IPortfolioDocument[] = (await PortfolioModel.find().populate({
+        path: 'experienceId',
+        populate: {
+          path: 'projectIds',
+          model: 'Project'
+        }
+      }).lean()) as IPortfolioDocument[];
 
     return portfolios;
   }

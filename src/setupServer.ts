@@ -105,6 +105,7 @@ export class ChattyServer {
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
       }
     });
+
     const pubClient = createClient({ url: config.REDIS_HOST });
     const subClient = pubClient.duplicate();
     await Promise.all([pubClient.connect(), subClient.connect()]);
@@ -127,7 +128,6 @@ export class ChattyServer {
     // const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
     // const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
     // const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
-
     // postSocketHandler.listen();
     // followerSocketHandler.listen();
     // userSocketHandler.listen();

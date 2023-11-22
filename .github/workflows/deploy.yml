@@ -1,0 +1,34 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main # Replace with your branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Copy files to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          source: '.'
+          target: '/home/ec2-user/app' # Replace with your directory path
+
+      - name: Run Docker Compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /home/ec2-user/app
+            docker-compose up -d --build
