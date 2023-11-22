@@ -8,9 +8,6 @@ RUN apk add --no-cache build-base g++ cairo-dev jpeg-dev pango-dev giflib-dev
 # Create app directory
 WORKDIR /usr/src/app
 
-# Install nodemon
-RUN npm i -g nodemon
-
 RUN npm i -g pm2
 
 # Install app dependencies
