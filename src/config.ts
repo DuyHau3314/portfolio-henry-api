@@ -24,6 +24,7 @@ class Config {
   public AWS_SECRET_ACCESS_KEY: string | undefined;
   public AWS_REGION: string | undefined;
   public AWS_BUCKET_NAME: string | undefined;
+  public SERVER_PORT: string | undefined;
 
   private readonly DEFAULT_DATABASE_URL = 'mongodb://localhost:27017/portfolio-henry';
 
@@ -47,6 +48,7 @@ class Config {
     this.AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY || '';
     this.AWS_REGION = process.env.AWS_REGION || '';
     this.AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME || '';
+    this.SERVER_PORT = process.env.SERVER_PORT || '';
   }
 
   public createLogger(name: string): bunyan {

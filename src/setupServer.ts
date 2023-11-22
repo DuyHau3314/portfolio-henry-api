@@ -21,7 +21,7 @@ import { CustomError, IErrorResponse } from '@global/helpers/error-handler';
 // import { SocketIOImageHandler } from '@socket/image';
 // import { SocketIOChatHandler } from '@socket/chat';
 
-const SERVER_PORT = 5000;
+const SERVER_PORT = config.SERVER_PORT || 5000;
 const log: Logger = config.createLogger('server');
 
 export class ChattyServer {
