@@ -7,7 +7,7 @@ RUN npm i -g pm2
 
 # Install app dependencies
 COPY package*.json ./
-RUN npm ci
+RUN npm i
 
 # Bundle app source
 COPY . .
