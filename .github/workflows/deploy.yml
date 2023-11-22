@@ -30,5 +30,12 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
+            # Install Docker Compose if it's not already installed
+            if ! type "docker-compose" > /dev/null; then
+            sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+            fi
+
+            # Navigate to your app directory and start services
             cd /home/ec2-user/app
             docker-compose up -d --build
