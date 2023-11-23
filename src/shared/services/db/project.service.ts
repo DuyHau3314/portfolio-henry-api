@@ -34,8 +34,6 @@ class ProjectService {
   public async updateProject(id: string, data: IProjectDocument): Promise<IProjectDocument | null> {
     const projectDocument = await ProjectModel.findById(id);
 
-    console.log('===data', data);
-
     if (!projectDocument) {
       return null;
     }

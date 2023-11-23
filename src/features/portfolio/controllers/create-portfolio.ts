@@ -15,7 +15,8 @@ import { portfolioQueue } from '@service/queues/portfolio.queue';
 export class Create {
   @joiValidation(createPortfolioSchema)
   public async portfolio(req: Request, res: Response): Promise<void> {
-    const { name, description, image, shortDescription, mainDescription, projectsCompleted, satisfiedClients, experienceId } = req.body;
+    const { name, description, image, shortDescription, mainDescription, projectsCompleted, satisfiedClients, experienceId, shortInfo } =
+      req.body;
 
     portfolioQueue.addPortfolioJob('createPortfolio', {
       value: {
@@ -26,7 +27,8 @@ export class Create {
         mainDescription,
         projectsCompleted,
         satisfiedClients,
-        experienceId
+        experienceId,
+        shortInfo
       }
     });
 

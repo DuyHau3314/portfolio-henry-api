@@ -12,13 +12,16 @@ class PortfolioService {
 
   // Get all portfolios
   public async getPortfolios(): Promise<IPortfolioDocument[]> {
-    const portfolios: IPortfolioDocument[] = (await PortfolioModel.find().populate({
+    const portfolios: IPortfolioDocument[] = (await PortfolioModel.find()
+      .populate({
         path: 'experienceId',
         populate: {
           path: 'projectIds',
-          model: 'Project'
+          model: 'Project',
+          options: { sort: { endDate: -1 } } // Sorting projects by createdAt in descending order
         }
-      }).lean()) as IPortfolioDocument[];
+      })
+      .lean()) as IPortfolioDocument[];
 
     return portfolios;
   }
@@ -36,6 +39,16 @@ class PortfolioService {
 
     if (!portfolioDocument) {
       return null;
+    }
+
+    // Remove field has  empty value
+    for (const key in data) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (data.hasOwnProperty(key)) {
+        if (data[key as PortfolioKeys] === '') {
+          delete data[key as PortfolioKeys];
+        }
+      }
     }
 
     // Update fields

@@ -41,7 +41,8 @@ const createEducationAndExperienceSchema: ObjectSchema = Joi.object().keys({
         description: Joi.string().required().messages({
           'string.base': 'Description should be a type of string',
           'string.empty': 'Description is a required field'
-        })
+        }),
+        icon: Joi.string().optional().allow(null, '')
       })
     )
     .optional()
@@ -108,7 +109,8 @@ const updateEducationAndExperienceSchema: ObjectSchema = Joi.object().keys({
       Joi.object({
         name: Joi.string().optional().allow(null, ''),
         description: Joi.string().optional().allow(null, ''),
-        _id: Joi.string().optional()
+        _id: Joi.string().optional(),
+        icon: Joi.string().optional().allow(null, '')
       })
     )
     .optional()
@@ -122,7 +124,7 @@ const updateProjectSchema: ObjectSchema = Joi.object().keys({
   startDate: Joi.date().optional(),
   endDate: Joi.date().optional(),
   title: Joi.string().optional().allow(null, ''),
-  images: Joi.array().optional().allow(null,''),
+  images: Joi.array().optional().allow(null, ''),
   _id: Joi.string().optional().allow(null, ''),
   __v: Joi.number().optional()
 });

@@ -96,8 +96,6 @@ export class SignUp {
     const { email } = req.body;
     const checkIfUserExist: IAuthDocument = await authService.getAuthUserByEmail(email);
 
-    console.log('======checkIfUserExist', checkIfUserExist);
-
     if (checkIfUserExist) {
       const user: IUserDocument = await userService.getUserByAuthId(`${checkIfUserExist._id}`);
       const token = JWT.sign({ userId: user._id, email }, config.JWT_TOKEN!, { expiresIn: '1d' });
@@ -114,8 +112,6 @@ export class SignUp {
       const password = `${Helpers.generateRandomIntegers(8)}`;
 
       const username = extractUsername(email);
-
-      console.log('==username', username);
 
       const authData: IAuthDocument = {
         _id: authObjectId,

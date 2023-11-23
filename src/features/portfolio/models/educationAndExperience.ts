@@ -13,7 +13,8 @@ const educationAndExperienceSchema: Schema = new Schema({
   responsibilities: [
     {
       name: { type: String, required: true },
-      description: { type: String, required: true }
+      description: { type: String, required: true },
+      icon: { type: String, required: true }
     }
   ]
 });
