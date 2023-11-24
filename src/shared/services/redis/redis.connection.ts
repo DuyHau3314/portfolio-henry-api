@@ -11,6 +11,12 @@ class RedisConnection extends BaseCache {
 
   async connect(): Promise<void> {
     try {
+      // Check if the client is already connected
+      if (this.client.isOpen) {
+        log.info('Redis client already connected.');
+        return;
+      }
+
       await this.client.connect();
       log.info(`Redis connection: ${await this.client.ping()}`);
     } catch (error) {

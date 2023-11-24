@@ -6,7 +6,6 @@ import { authMiddleware } from '@global/helpers/auth-middleware';
 import { userRoutes } from '@user/routes/userRoutes';
 import { healthRoutes } from '@user/routes/healthRoutes';
 import { portfolioRoutes } from '@portfolio/routes/portfolioRoutes';
-import { uploadRoutes } from './features/upload/routes/uploadRoutes';
 
 const BASE_PATH = '/api/v1';
 
@@ -24,7 +23,6 @@ export default (app: Application) => {
     app.use(BASE_PATH, authMiddleware.verifyUser, currentUserRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, userRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, portfolioRoutes.routes());
-    app.use(BASE_PATH, authMiddleware.verifyUser, uploadRoutes.routes());
   };
   routes();
 };
