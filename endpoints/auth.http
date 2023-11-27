@@ -21,7 +21,7 @@ Accept: application/json
 withCredentials: true
 
 {
-  "username": "duyhau1",
+  "username": "duyhau",
   "password": "12345678",
   "email": "congtuzxc1@gmail.com"
 }

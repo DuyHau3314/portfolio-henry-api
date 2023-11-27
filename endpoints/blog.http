@@ -1,0 +1,84 @@
+# Category
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTYxNmE5ZWYzZTFhYjY2OTNkZTQ2YjIiLCJ1SWQiOiI1ODUxMTk1OTI3NTUiLCJlbWFpbCI6ImNvbmd0dXp4YzFAZ21haWwuY29tIiwidXNlcm5hbWUiOiJEdXloYXUiLCJpYXQiOjE3MDA4ODMxMDcsImV4cCI6MTcwMDk2OTUwN30.N5oFr1nNeN5io6bZuN-MdsIF_RQ60a6Ox7u7Gi5ysiM
+
+###
+POST {{baseUrl}}/{{urlPath}}/category
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Category 1"
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/categories
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+GET {{baseUrl}}/{{urlPath}}/category/65616b19f3e1ab6693de46ba
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+PUT {{baseUrl}}/{{urlPath}}/category/65616b19f3e1ab6693de46ba
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Category11",
+    "tags": []
+}
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/category/65616b19f3e1ab6693de46ba
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/blog
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Blog 1 we sdcw wd @d",
+    "content": "Blog 1 content",
+    "categories": ["Frontend"],
+    "tags": ["React", "Nextjs"],
+    "images": ["https://res.cloudinary.com/henry-trinh-dev-hub-fullstack/image/upload/v1700760333/uploads/geab4gmxum4hk6qjivau.png"],
+    "status": "published"
+ }
+
+###
+GET {{baseUrl}}/{{urlPath}}/blog/65620cdcbd9b7799af14a7bb
+Content-Type: application/json
+Accept: application/json
+
+###
+GET {{baseUrl}}/{{urlPath}}/blogs?page=1&pageSize=4&search=SSr
+Content-Type: application/json
+Accept: application/json
+
+###
+PUT {{baseUrl}}/{{urlPath}}/blog/65620f6be1818116c8c4cec1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Blog Next js sdcw wd @d",
+    "content": "Nextjs is nextjs content SSR Reactjs",
+    "categories": ["Frontend"],
+    "tags": ["React", "Nextjs"],
+    "status": "published"
+ }

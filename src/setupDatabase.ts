@@ -12,6 +12,18 @@ export default () => {
       .then(() => {
         log.info('Successfully connected to database.');
         redisConnection.connect();
+
+        // Enable Mongoose debug mode in development environment
+        if (config.NODE_ENV === 'development') {
+          mongoose.set('debug', (collectionName, method, query, doc) => {
+            log.debug({
+              collectionName,
+              method,
+              query,
+              doc
+            });
+          });
+        }
       })
       .catch((error) => {
         log.error('Error connecting to database', error);

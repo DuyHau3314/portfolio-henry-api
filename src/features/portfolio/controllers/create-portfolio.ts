@@ -9,7 +9,6 @@ import {
   updatePortfolioSchema,
   updateProjectSchema
 } from '../schemes/portfolioSchema';
-import { PortfolioModel } from '@portfolio/models/portfolio.schema';
 import { portfolioQueue } from '@service/queues/portfolio.queue';
 
 export class Create {

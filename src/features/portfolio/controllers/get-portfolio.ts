@@ -3,14 +3,16 @@ import { portfolioService } from '@service/db/portfolio.service';
 import HTTP_STATUS from 'http-status-codes';
 import { Request, Response } from 'express';
 import { projectService } from '@service/db/project.service';
+import BlogPostService from '@service/db/blog.service';
 
 export class Get {
   public async portfolio(req: Request, res: Response): Promise<void> {
     const portfolios = await portfolioService.getPortfolios();
+    const blogs = await BlogPostService.prototype.findAll();
 
     res.status(HTTP_STATUS.OK).json({
       message: 'Portfolios fetched successfully',
-      data: portfolios
+      data: { portfolios, blogs }
     });
   }
 

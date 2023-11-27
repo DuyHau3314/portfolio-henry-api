@@ -1,9 +1,7 @@
+import { userService } from '@service/db/user.service';
+import { IUserDocument } from '@user/interfaces/user.interface';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
-import { IAllUsers, IUserDocument } from '@user/interfaces/user.interface';
-import { userService } from '@service/db/user.service';
-import mongoose from 'mongoose';
-import { Helpers } from '@global/helpers/helpers';
 
 const PAGE_SIZE = 12;
 
@@ -25,5 +23,4 @@ export class Get {
     const existingUser: IUserDocument = await userService.getUserById(userId);
     res.status(HTTP_STATUS.OK).json({ message: 'Get user profile by id', user: existingUser });
   }
-
 }
