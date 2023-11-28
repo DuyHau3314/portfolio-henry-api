@@ -6,8 +6,8 @@ import CategoryService from '@service/db/category.service';
 
 export class Get {
   public async blog(req: Request, res: Response): Promise<void> {
-    const { id } = req.params;
-    const blog: IBlogPost = (await BlogPostService.prototype.findOne(id)) as IBlogPost;
+    const { slug } = req.params;
+    const blog: IBlogPost = (await BlogPostService.prototype.findOne(slug)) as IBlogPost;
     res.status(HTTP_STATUS.OK).json({ message: 'Get blog successfully', blog });
   }
 

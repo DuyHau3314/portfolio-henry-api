@@ -22,8 +22,9 @@ class AuthRoutes {
     this.router.post('/google-token', SignIn.prototype.googleSignin);
     // Public router
     this.router.get('/portfolio', GetPortfolio.prototype.portfolio);
-    this.router.get('/blog/:id', GetBlog.prototype.blog);
+    this.router.get('/blog/:slug', GetBlog.prototype.blog);
     this.router.get('/blogs', GetBlog.prototype.blogs);
+    this.router.get('/categories', GetBlog.prototype.categories);
 
     return this.router;
   }

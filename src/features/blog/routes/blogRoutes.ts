@@ -15,7 +15,6 @@ class BlogRoutes {
   public routes(): Router {
     // Category
     this.router.get('/category/:id', authMiddleware.checkAuthentication, Get.prototype.category);
-    this.router.get('/categories', authMiddleware.checkAuthentication, Get.prototype.categories);
     this.router.post('/category', authMiddleware.checkAuthentication, Create.prototype.category);
     this.router.put('/category/:id', authMiddleware.checkAuthentication, Update.prototype.category);
     this.router.delete('/category/:id', authMiddleware.checkAuthentication, Delete.prototype.category);
