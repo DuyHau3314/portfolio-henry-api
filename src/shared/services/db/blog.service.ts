@@ -1,6 +1,7 @@
-import { IBlogPost } from '@root/features/blog/interfaces/blog.interface';
+import { IBlogPost, IComment } from '@root/features/blog/interfaces/blog.interface';
 import BlogPost from '@root/features/blog/models/blog.shema';
-import { FilterQuery } from 'mongoose';
+import { Comment } from '@root/features/blog/models/comment.schema';
+import mongoose, { FilterQuery, mongo } from 'mongoose';
 
 interface PaginationResult<T> {
   data: T[];
@@ -87,6 +88,15 @@ class BlogPostService {
 
   async delete(id: string): Promise<IBlogPost | null> {
     return await BlogPost.findByIdAndRemove(id);
+  }
+
+  // id: blog id
+  async findComments(id: string): Promise<IComment[] | null> {
+    return await Comment.find({ post: new mongoose.Types.ObjectId(id) }).sort({ createdAt: -1 });
+  }
+
+  async addComment(post: string, comment: IComment): Promise<IComment | null> {
+    return await Comment.create({ ...comment, post });
   }
 }
 

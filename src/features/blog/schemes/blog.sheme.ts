@@ -71,11 +71,19 @@ const updateCategoryValidationSchema = Joi.object({
   tags: Joi.array().items(Joi.string())
 });
 
+const addCommentToBlogValidationSchema = Joi.object({
+  message: Joi.string().required(),
+  name: Joi.string().default('Anonymous'),
+  email: Joi.string().email().required(),
+  createdAt: Joi.date().default(() => new Date())
+});
+
 export {
   createBlogPostValidationSchema,
   updateBlogPostValidationSchema,
   createCommentValidationSchema,
   updateCommentValidationSchema,
   createCategoryValidationSchema,
-  updateCategoryValidationSchema
+  updateCategoryValidationSchema,
+  addCommentToBlogValidationSchema
 };

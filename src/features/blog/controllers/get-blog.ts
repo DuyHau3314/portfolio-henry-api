@@ -27,4 +27,10 @@ export class Get {
     const blogs = await BlogPostService.prototype.findAll(Number(page), Number(pageSize), String(search), filter as string);
     res.status(HTTP_STATUS.OK).json({ message: 'Get blogs successfully', blogs });
   }
+
+  public async comments(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const comments = await BlogPostService.prototype.findComments(id);
+    res.status(HTTP_STATUS.OK).json({ message: 'Get comments successfully', comments });
+  }
 }

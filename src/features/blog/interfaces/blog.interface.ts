@@ -6,10 +6,11 @@ export interface IEmotion {
 }
 
 export interface IComment extends mongoose.Document {
-  content: string;
+  message: string;
   name: string;
+  email: string;
   post: mongoose.Types.ObjectId;
-  createdAt: Date;
+  createdAt?: Date;
 }
 
 export interface IBlogPost extends mongoose.Document {

@@ -82,3 +82,19 @@ Authorization: Bearer {{token}}
     "tags": ["React", "Nextjs"],
     "status": "published"
  }
+
+###
+PUT {{baseUrl}}/{{urlPath}}/blog/65620cdcbd9b7799af14a7bb/comment
+Content-Type: application/json
+Accept: application/json
+
+{
+    "message": "Comment 1",
+    "name": "Henry Trinh",
+    "email": "hau@gmail.com"
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/comments/blog/65620cdcbd9b7799af14a7bb
+Content-Type: application/json
+Accept: application/json

@@ -3,7 +3,9 @@ import { SignIn } from '@auth/controllers/signin';
 import { SignOut } from '@auth/controllers/signout';
 import { SignUp } from '@auth/controllers/signup';
 import { Get as GetBlog } from '@root/features/blog/controllers/get-blog';
+import { Update as UpdateBlog } from '@root/features/blog/controllers/update-blog';
 import { Get as GetPortfolio } from '@portfolio/controllers/get-portfolio';
+
 import express, { Router } from 'express';
 
 class AuthRoutes {
@@ -24,6 +26,8 @@ class AuthRoutes {
     this.router.get('/portfolio', GetPortfolio.prototype.portfolio);
     this.router.get('/blog/:slug', GetBlog.prototype.blog);
     this.router.get('/blogs', GetBlog.prototype.blogs);
+    this.router.put('/blog/:id/comment', UpdateBlog.prototype.comment);
+    this.router.get('/comments/blog/:id', GetBlog.prototype.comments);
     this.router.get('/categories', GetBlog.prototype.categories);
 
     return this.router;
