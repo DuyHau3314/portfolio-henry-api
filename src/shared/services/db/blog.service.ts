@@ -1,7 +1,7 @@
 import { IBlogPost, IComment } from '@root/features/blog/interfaces/blog.interface';
 import BlogPost from '@root/features/blog/models/blog.shema';
 import { Comment } from '@root/features/blog/models/comment.schema';
-import mongoose, { FilterQuery, mongo } from 'mongoose';
+import mongoose, { FilterQuery } from 'mongoose';
 
 interface PaginationResult<T> {
   data: T[];
@@ -95,8 +95,12 @@ class BlogPostService {
     return await Comment.find({ post: new mongoose.Types.ObjectId(id) }).sort({ createdAt: -1 });
   }
 
-  async addComment(post: string, comment: IComment): Promise<IComment | null> {
-    return await Comment.create({ ...comment, post });
+  async addComment(post: string, comment: IComment): Promise<any | null> {
+    const commentAdded = Comment.create({ ...comment, post });
+    // update comment count
+    const blog = BlogPost.findByIdAndUpdate(post, { $inc: { comments: 1 } }).exec();
+
+    return Promise.all([commentAdded, blog]);
   }
 }
 

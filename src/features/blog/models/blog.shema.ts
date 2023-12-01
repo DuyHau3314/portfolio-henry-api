@@ -16,7 +16,7 @@ const blogPostSchema = new Schema({
   ],
   categories: [{ type: String, required: true }],
   tags: [{ type: String, required: true }],
-  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
+  comments: { type: Number, default: 0 },
   slug: { type: String, unique: true, index: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },

@@ -18,7 +18,7 @@ export interface IBlogPost extends mongoose.Document {
   content: string;
   images: string[];
   emotions: IEmotion[];
-  comments: mongoose.Types.ObjectId[];
+  comments: number;
   slug: string;
   createdAt: Date;
   updatedAt: Date;

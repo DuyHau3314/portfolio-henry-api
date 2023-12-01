@@ -12,7 +12,6 @@ const createBlogPostValidationSchema = Joi.object({
   ),
   categories: Joi.array().items(Joi.string().required()),
   tags: Joi.array().items(Joi.string().required()),
-  comments: Joi.array().items(Joi.string()),
   createdAt: Joi.date().default(() => new Date()),
   updatedAt: Joi.date().default(() => new Date()),
   status: Joi.string().default('draft')
@@ -30,7 +29,7 @@ const updateBlogPostValidationSchema = Joi.object({
       count: Joi.number().default(0)
     })
   ),
-  comments: Joi.array().items(Joi.string().regex(/^[0-9a-fA-F]{24}$/)), // assuming MongoDB ObjectIds for comments
+  comments: Joi.number(),
   createdAt: Joi.date(),
   updatedAt: Joi.date(),
   status: Joi.string().valid('draft', 'published'),
