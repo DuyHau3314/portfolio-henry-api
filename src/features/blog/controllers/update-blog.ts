@@ -1,5 +1,10 @@
 import { joiValidation } from '@global/decorators/joi-validation.decorators';
-import { addCommentToBlogValidationSchema, updateBlogPostValidationSchema, updateCategoryValidationSchema } from '../schemes/blog.sheme';
+import {
+  addCommentToBlogValidationSchema,
+  updateBlogPostValidationSchema,
+  updateCategoryValidationSchema,
+  updateEmotionValidationSchema
+} from '../schemes/blog.sheme';
 import { Request, Response } from 'express';
 import BlogPostService from '@service/db/blog.service';
 import { IBlogPost, IComment } from '../interfaces/blog.interface';
@@ -26,6 +31,13 @@ export class Update {
   public async comment(req: Request, res: Response): Promise<void> {
     const id = req.params.id;
     const newBlogPost = await BlogPostService.prototype.addComment(id, req.body as IComment);
+    res.status(HTTP_STATUS.CREATED).json({ message: 'Blog added successfully', newBlogPost });
+  }
+
+  @joiValidation(updateEmotionValidationSchema)
+  public async emotion(req: Request, res: Response): Promise<void> {
+    const id = req.params.id;
+    const newBlogPost = await BlogPostService.prototype.addEmotion(id, req.body);
     res.status(HTTP_STATUS.CREATED).json({ message: 'Blog added successfully', newBlogPost });
   }
 }

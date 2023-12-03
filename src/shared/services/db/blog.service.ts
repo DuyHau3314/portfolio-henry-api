@@ -18,9 +18,8 @@ class BlogPostService {
   }
 
   async findAll(page = 1, pageSize = 4, search?: string, filter = '', post = 'published'): Promise<PaginationResult<IBlogPost>> {
-    console.log('====filter', filter);
-    let query: FilterQuery<IBlogPost> = {};
-    let searchQuery = {};
+    let query: FilterQuery<IBlogPost> = { status: post };
+    const searchQuery = {};
 
     const projection = {
       _id: 1, // exclude '_id'
@@ -31,14 +30,19 @@ class BlogPostService {
       comments: 1,
       categories: 1,
       tags: 1,
-      slug: 1
+      slug: 1,
+      contentPreview: 1
       // Add more fields as needed
     };
 
     if (search && search.trim() && typeof search !== undefined && search !== 'undefined') {
       // Add text search criteria only if search term is provided and not just whitespace
-      query = { $text: { $search: search }, status: post };
-      searchQuery = { score: { $meta: 'textScore' } }; // Sort by text search score
+      const searchRegex = new RegExp(search.trim(), 'i');
+      query.$or = [
+        { title: { $regex: searchRegex } },
+        { content: { $regex: searchRegex } }
+        // You can add more fields if needed
+      ];
     } else {
       // {categories:[Backend]}
       const convertedObject = {};
@@ -56,8 +60,6 @@ class BlogPostService {
         ((convertedObject as any)[key as any] as any) = { $in: filterObj[key as any] };
       }
 
-      console.log('===convertedObject', convertedObject);
-
       query = { status: post, ...convertedObject };
     }
 
@@ -65,7 +67,7 @@ class BlogPostService {
     const totalPages = Math.ceil(totalItems / pageSize);
 
     const data = (await BlogPost.find(query, projection)
-      .sort(searchQuery)
+      .sort({ ...searchQuery, createdAt: -1 })
       .skip((page - 1) * pageSize)
       .limit(pageSize)) as IBlogPost[];
 
@@ -101,6 +103,17 @@ class BlogPostService {
     const blog = BlogPost.findByIdAndUpdate(post, { $inc: { comments: 1 } }).exec();
 
     return Promise.all([commentAdded, blog]);
+  }
+
+  async addEmotion(postId: string, emotion: { old: string; new: string }): Promise<any | null> {
+    const { old, new: newEmotion } = emotion;
+    try {
+      const updatedBlogPost = await BlogPost.updateEmotion(postId, old, newEmotion);
+      return updatedBlogPost;
+    } catch (error) {
+      console.error('Error updating emotions:', error);
+      return null;
+    }
   }
 }
 

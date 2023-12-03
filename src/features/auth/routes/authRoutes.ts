@@ -26,7 +26,9 @@ class AuthRoutes {
     this.router.get('/portfolio', GetPortfolio.prototype.portfolio);
     this.router.get('/blog/:slug', GetBlog.prototype.blog);
     this.router.get('/blogs', GetBlog.prototype.blogs);
+    this.router.get('/blogs/search', GetBlog.prototype.blogs);
     this.router.put('/blog/:id/comment', UpdateBlog.prototype.comment);
+    this.router.put('/blog/:id/emotion', UpdateBlog.prototype.emotion);
     this.router.get('/comments/blog/:id', GetBlog.prototype.comments);
     this.router.get('/categories', GetBlog.prototype.categories);
 

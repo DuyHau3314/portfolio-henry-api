@@ -60,12 +60,12 @@ Authorization: Bearer {{token}}
  }
 
 ###
-GET {{baseUrl}}/{{urlPath}}/blog/65620cdcbd9b7799af14a7bb
+GET {{baseUrl}}/{{urlPath}}/blog/tong-bi-thu-nguyen-phu-trong-tiep-ngoai-truong-trung-quoc
 Content-Type: application/json
 Accept: application/json
 
 ###
-GET {{baseUrl}}/{{urlPath}}/blogs?page=1&pageSize=4&search=SSr
+GET {{baseUrl}}/{{urlPath}}/blogs?page=1&pageSize=4
 Content-Type: application/json
 Accept: application/json
 

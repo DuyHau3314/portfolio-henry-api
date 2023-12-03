@@ -77,6 +77,11 @@ const addCommentToBlogValidationSchema = Joi.object({
   createdAt: Joi.date().default(() => new Date())
 });
 
+const updateEmotionValidationSchema = Joi.object({
+  old: Joi.string().valid('happy', 'like', 'dislike', ''),
+  new: Joi.string().valid('happy', 'like', 'dislike', '')
+});
+
 export {
   createBlogPostValidationSchema,
   updateBlogPostValidationSchema,
@@ -84,5 +89,6 @@ export {
   updateCommentValidationSchema,
   createCategoryValidationSchema,
   updateCategoryValidationSchema,
-  addCommentToBlogValidationSchema
+  addCommentToBlogValidationSchema,
+  updateEmotionValidationSchema
 };

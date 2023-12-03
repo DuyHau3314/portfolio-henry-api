@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 
 export interface IEmotion {
   type: 'happy' | 'agree' | 'disagree' | 'more';
@@ -16,12 +16,17 @@ export interface IComment extends mongoose.Document {
 export interface IBlogPost extends mongoose.Document {
   title: string;
   content: string;
+  contentPreview: string;
   images: string[];
   emotions: IEmotion[];
   comments: number;
   slug: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface BlogPostModel extends Model<IBlogPost> {
+  updateEmotion(postId: string, oldEmotion: string, newEmotion: string): Promise<IBlogPost>;
 }
 
 export interface ICategoryDocument extends Document {
