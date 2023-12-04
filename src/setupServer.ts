@@ -45,7 +45,7 @@ export class ChattyServer {
     app.use(helmet());
     app.use(
       cors({
-        origin: config.CLIENT_URL,
+        origin: config.CORS_URLS!.split(';').map((url) => url.trim()),
         optionsSuccessStatus: 200,
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
       })
