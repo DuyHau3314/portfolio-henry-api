@@ -25,9 +25,7 @@ export interface IBlogPost extends mongoose.Document {
   updatedAt: Date;
 }
 
-export interface BlogPostModel extends Model<IBlogPost> {
-  updateEmotion(postId: string, oldEmotion: string, newEmotion: string): Promise<IBlogPost>;
-}
+export type BlogPostModel = Model<IBlogPost>;
 
 export interface ICategoryDocument extends Document {
   name: string;

@@ -98,3 +98,19 @@ Accept: application/json
 GET {{baseUrl}}/{{urlPath}}/comments/blog/65620cdcbd9b7799af14a7bb
 Content-Type: application/json
 Accept: application/json
+
+###
+PUT {{baseUrl}}/{{urlPath}}/blog/656f4cb5c9cea234401e2e77/emotion
+Content-Type: application/json
+Accept: application/json
+
+{
+    "old": "",
+    "new": "like"
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/blog/656f4cb5c9cea234401e2e77/reactions
+Content-Type: application/json
+Accept: application/json
+

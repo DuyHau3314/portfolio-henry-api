@@ -33,4 +33,10 @@ export class Get {
     const comments = await BlogPostService.prototype.findComments(id);
     res.status(HTTP_STATUS.OK).json({ message: 'Get comments successfully', comments });
   }
+
+  public async reactions(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const reactions = await BlogPostService.prototype.findReactions(id);
+    res.status(HTTP_STATUS.OK).json({ message: 'Get reactions successfully', reactions });
+  }
 }

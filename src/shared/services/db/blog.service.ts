@@ -1,6 +1,7 @@
 import { IBlogPost, IComment } from '@root/features/blog/interfaces/blog.interface';
 import BlogPost from '@root/features/blog/models/blog.shema';
 import { Comment } from '@root/features/blog/models/comment.schema';
+import reactionSchema from '@root/features/blog/models/reaction.schema';
 import mongoose, { FilterQuery } from 'mongoose';
 
 interface PaginationResult<T> {
@@ -108,10 +109,28 @@ class BlogPostService {
   async addEmotion(postId: string, emotion: { old: string; new: string }): Promise<any | null> {
     const { old, new: newEmotion } = emotion;
     try {
-      const updatedBlogPost = await BlogPost.updateEmotion(postId, old, newEmotion);
-      return updatedBlogPost;
+      const updateReactionQuery = {
+        $inc: {
+          [`emotions.${old}`]: -1,
+          [`emotions.${newEmotion}`]: 1
+        }
+      };
+
+      const newReaction = await reactionSchema.findOneAndUpdate({ blogId: postId }, updateReactionQuery, { new: true, upsert: true });
+
+      return newReaction;
     } catch (error) {
       console.error('Error updating emotions:', error);
+      return null;
+    }
+  }
+
+  async findReactions(postId: string): Promise<any | null> {
+    try {
+      const reaction = await reactionSchema.findOne({ blogId: postId });
+      return reaction;
+    } catch (error) {
+      console.error('Error getting reactions:', error);
       return null;
     }
   }
